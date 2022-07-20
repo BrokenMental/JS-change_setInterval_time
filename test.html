@@ -1,0 +1,43 @@
+<html>
+    <body>
+        <div>
+            <input type="button" value="0.1초" onclick="chgTime(100);">
+            <input type="button" value="0.5초" onclick="chgTime(500);">
+            <input type="button" value="1초" onclick="chgTime(1000);">
+        </div>
+        <div>
+            <input type="button" value="play" onclick="setIntervalPlay();">
+            <input type="button" value="stop" onclick="endIntervalPlay();">
+        </div>
+        <script>
+            let setIntervalObj = null;
+            let setTime = 1000;
+            let printTime = 0;
+
+            //play setInterval function
+            const setIntervalPlay = () => {
+                if(setIntervalObj !== null) {
+                    clearInterval(setIntervalObj);
+                }
+
+                setIntervalObj = setInterval(() => {
+                    console.log(printTime++);
+                }, setTime);
+            }
+
+            //change setInterval time
+            const chgTime = (inputTime) => {
+                console.log('chg time : ' + inputTime);
+                setTime = inputTime;
+                setIntervalPlay();
+            }
+
+            //end setInterval function
+            const endIntervalPlay = () => {
+                clearInterval(setIntervalObj);
+                setIntervalObj = null;
+                printTime = 0;
+            }
+        </script>
+    </body>
+</html>
